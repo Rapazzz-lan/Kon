@@ -1,0 +1,12 @@
+{
+  "name": "mangastore",
+  "version": "1.0.0",
+  "description": "E-commerce de mangás: HTML/CSS/JS puro + Node + SQLite",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test compra.test.js",
+    "db:reset": "node --disable-warning=ExperimentalWarning resetar.js"
+  }
+}

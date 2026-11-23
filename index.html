@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MangáStore — Mangás, lançamentos e Clube de Assinatura</title>
+  <meta name="description" content="Mangás físicos em volumes avulsos e coleções, com Clube de Assinatura mensal e pré-vendas exclusivas.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="topo">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar__conteudo">
+      <a class="logo" href="#topo">Mangá<span>Store</span></a>
+
+      <form class="busca" id="form-busca" role="search">
+        <label class="sr-only" for="campo-busca">Buscar mangá por título ou autor</label>
+        <input id="campo-busca" type="search" placeholder="Buscar por título ou autor…" autocomplete="off">
+      </form>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#catalogo" id="link-generos">Gêneros</a>
+        <a href="#catalogo" id="link-lancamentos">Lançamentos</a>
+        <a href="#clube">Clube de Assinatura</a>
+      </nav>
+
+      <button class="btn-carrinho" id="btn-carrinho" type="button" aria-label="Abrir carrinho">
+        <span aria-hidden="true">🛒</span>
+        <span class="badge" id="contador-carrinho">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__conteudo">
+        <p class="hero__selo">Novo • Clube de Assinatura Mensal</p>
+        <h1>Uma box surpresa de mangás todo mês na sua porta</h1>
+        <p>Volumes selecionados + brindes exclusivos: marcadores de página e pôsteres. Pré-vendas com acesso antecipado e itens colecionáveis.</p>
+        <a class="btn btn--grande" href="#clube">Conhecer Planos</a>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO: gênero (clique 1) > obra (clique 2) > volume/Comprar (clique 3) -->
+    <section class="container secao" id="catalogo">
+      <h2 class="secao__titulo">Explore por gênero</h2>
+
+      <div class="filtros" id="filtro-generos" role="group" aria-label="Filtrar por gênero">
+        <button type="button" class="chip" data-genero="" aria-pressed="true">Lançamentos</button>
+        <button type="button" class="chip" data-genero="Shonen" aria-pressed="false">Shonen</button>
+        <button type="button" class="chip" data-genero="Seinen" aria-pressed="false">Seinen</button>
+        <button type="button" class="chip" data-genero="Shojo" aria-pressed="false">Shojo</button>
+      </div>
+
+      <div class="filtros filtros--obras" id="filtro-obras" role="group" aria-label="Filtrar por obra" hidden></div>
+
+      <h2 class="secao__titulo" id="titulo-grade">Lançamentos da Semana</h2>
+      <p class="status" id="status" aria-live="polite"></p>
+      <div class="grade" id="grade"></div>
+    </section>
+
+    <!-- CLUBE DE ASSINATURA (clique 1) > plano (clique 2) > checkout (clique 3) -->
+    <section class="secao secao--escura" id="clube">
+      <div class="container">
+        <h2 class="secao__titulo">Clube de Assinatura</h2>
+        <div class="planos">
+          <article class="plano">
+            <h3>Básico</h3>
+            <p class="plano__preco">R$ 59,90<small>/mês</small></p>
+            <ul>
+              <li>1 mangá surpresa por mês</li>
+              <li>Marcador de página exclusivo</li>
+              <li>Frete incluso</li>
+            </ul>
+            <button type="button" class="btn" data-plano="Básico" data-preco="59,90">Assinar</button>
+          </article>
+          <article class="plano plano--destaque">
+            <h3>Colecionador</h3>
+            <p class="plano__preco">R$ 119,90<small>/mês</small></p>
+            <ul>
+              <li>3 mangás surpresa por mês</li>
+              <li>Pôster + marcador exclusivos</li>
+              <li>Acesso antecipado às pré-vendas</li>
+            </ul>
+            <button type="button" class="btn" data-plano="Colecionador" data-preco="119,90">Assinar</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__conteudo">
+      <div>
+        <h3>Institucional</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Formas de pagamento</h3>
+        <p class="pagamentos"><span>Pix</span><span>Cartão de Crédito</span></p>
+      </div>
+      <div>
+        <h3>Redes sociais</h3>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__copy">© 2026 MangáStore. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- CARRINHO -->
+  <dialog id="dialog-carrinho" aria-labelledby="titulo-carrinho">
+    <div class="dialog__cabecalho">
+      <h2 id="titulo-carrinho">Seu carrinho</h2>
+      <button type="button" class="dialog__fechar" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <ul class="lista-carrinho" id="lista-carrinho"></ul>
+    <p class="total" id="total-carrinho"></p>
+    <div class="mensagens" id="mensagens-carrinho" aria-live="polite"></div>
+    <div class="dialog__acoes">
+      <button type="button" class="btn btn--secundario" data-fechar>Continuar comprando</button>
+      <button type="button" class="btn" id="btn-finalizar">Finalizar compra</button>
+    </div>
+  </dialog>
+
+  <!-- AVISE-ME QUANDO CHEGAR -->
+  <dialog id="dialog-aviso" aria-labelledby="titulo-aviso">
+    <div class="dialog__cabecalho">
+      <h2 id="titulo-aviso">Avise-me quando chegar</h2>
+      <button type="button" class="dialog__fechar" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <form id="form-aviso">
+      <p id="aviso-produto"></p>
+      <label for="aviso-email">Seu e-mail</label>
+      <input id="aviso-email" type="email" required placeholder="voce@email.com">
+      <p class="mensagens" id="mensagem-aviso" aria-live="polite"></p>
+      <div class="dialog__acoes">
+        <button type="button" class="btn btn--secundario" data-fechar>Cancelar</button>
+        <button type="submit" class="btn">Avisar-me</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ASSINATURA (checkout demonstrativo) -->
+  <dialog id="dialog-assinatura" aria-labelledby="titulo-assinatura">
+    <div class="dialog__cabecalho">
+      <h2 id="titulo-assinatura">Finalizar assinatura</h2>
+      <button type="button" class="dialog__fechar" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <p id="resumo-assinatura"></p>
+    <p class="mensagens" id="mensagem-assinatura" aria-live="polite"></p>
+    <div class="dialog__acoes">
+      <button type="button" class="btn btn--secundario" data-fechar>Voltar</button>
+      <button type="button" class="btn" id="btn-confirmar-assinatura">Confirmar assinatura</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
